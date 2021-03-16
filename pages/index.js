@@ -17,10 +17,6 @@ export default function Home({ allPosts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <p>
-        index.js
-      </p>
-
       {lastPosts.map((post) => (
         <>
           <h1>{post.title}</h1>

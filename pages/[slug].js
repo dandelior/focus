@@ -18,7 +18,6 @@ function Post({ post, morePosts, preview }) {
 
     return (
         <>
-            <p>[slug].js</p>
             <Head>
                 {post.title}
             </Head>
