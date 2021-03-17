@@ -25,8 +25,7 @@ function Post({ post, morePosts, preview }) {
             <Header />
             
             <h1>{post.title}</h1>
-            <p>{formatDate(post.date)}</p>
-            <p>{post.author.name}</p>
+            <p>{formatDate(post.date)} - {post.author.name}</p>
 
             <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
         </>
