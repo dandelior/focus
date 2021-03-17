@@ -4,7 +4,9 @@ import { getPostBySlug, getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 import markdownToHtml from '../lib/markdownToHtml'
+import formatDate from '../lib/formatDate';
 
+import Header from '../parts/header';
 
 function Post({ post, morePosts, preview }) {
 
@@ -14,16 +16,16 @@ function Post({ post, morePosts, preview }) {
         return <p>404</p>
     }
 
-    console.log(post);
-
     return (
         <>
             <Head>
                 {post.title}
             </Head>
+
+            <Header />
             
             <h1>{post.title}</h1>
-            <p>{post.date}</p>
+            <p>{formatDate(post.date)}</p>
             <p>{post.author.name}</p>
 
             <div dangerouslySetInnerHTML={{ __html: post.content }}></div>

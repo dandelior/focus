@@ -2,8 +2,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { getAllPosts } from '../lib/api'
+import formatDate from '../lib/formatDate';
 import { CMS_NAME } from '../lib/constants'
 // import styles from '../styles/Home.module.css'
+import Header from '../parts/header';
 
 export default function Home({ allPosts }) {
 
@@ -17,13 +19,18 @@ export default function Home({ allPosts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header />
+
       {lastPosts.map((post) => (
         <>
-          <h1>{post.title}</h1>
-          <p>{post.date}</p>
           <Link as={`${post.slug}`} href="/[slug]">
-            <a>{post.title}</a>
+            <a>
+              <h1>{post.title}</h1>
+            </a>
           </Link>
+          <p>
+            {formatDate(post.date)}
+          </p>
         </>
       ))}
     </div>
