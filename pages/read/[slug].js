@@ -25,6 +25,9 @@ function Post({ post, morePosts, preview }) {
             <Header />
             
             <h1>{post.title}</h1>
+
+            <img src={post.coverImage} style={{width: '100%'}} />
+
             <p>{formatDate(post.date)} - {post.author.name}</p>
 
             <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
