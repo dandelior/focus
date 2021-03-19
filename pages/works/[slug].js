@@ -1,4 +1,4 @@
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { getWorkBySlug, getAllWorks } from '../../lib/api'
 import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml';
@@ -8,9 +8,13 @@ import Header from '../../parts/header';
 
 function Work({ work }) {
 
-    // console.log(work);
+    console.log(work);
 
-    // const router = useRouter();
+    const router = useRouter();
+
+    if (!router.isFallback && !work?.slug) {
+        return <p>404</p>
+    }
 
     return (
         <>
@@ -60,7 +64,7 @@ export async function getStaticPaths() {
                 }
             }
         }),
-        fallback: true,
+        fallback: false,
     }
 }
 
