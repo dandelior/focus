@@ -1,13 +1,16 @@
 
 import Head from 'next/head'
 import Link from 'next/link'
-import { getAllPosts } from '../lib/api'
+import { getAllPosts, getAllWorks } from '../lib/api'
 import formatDate from '../lib/formatDate';
 import { CMS_NAME } from '../lib/constants'
 // import styles from '../styles/Home.module.css'
 import Header from '../parts/header';
 
-export default function Home({ allPosts }) {
+export default function Home({ posts }) {
+
+  const allPosts = posts.allPosts;
+  const allWorks = posts.allWorks;
 
   const heroPost = allPosts[0];
   const lastPosts = allPosts;
@@ -21,11 +24,25 @@ export default function Home({ allPosts }) {
 
       <Header />
 
+      <h1>Posts</h1>
+
+      {allWorks.map((work) => (
+        <>
+          <Link as={`/works/${work.slug}`} href="/works/[slug]">
+            <a>
+              <h3>{work.title}</h3>
+            </a>
+          </Link>
+        </>
+      ))}
+
+      <h1>Works</h1>
+      
       {lastPosts.map((post) => (
         <>
-          <Link as={`${post.slug}`} href="/[slug]">
+          <Link as={`/read/${post.slug}`} href="/read/[slug]">
             <a>
-              <h1>{post.title}</h1>
+              <h3>{post.title}</h3>
             </a>
           </Link>
           <p>
@@ -33,6 +50,7 @@ export default function Home({ allPosts }) {
           </p>
         </>
       ))}
+
     </div>
   )
 }
@@ -47,7 +65,17 @@ export async function getStaticProps() {
     'excerpt',
   ])
 
+  const allWorks = getAllWorks([
+    'title',
+    'slug',
+  ])
+
   return {
-    props: { allPosts },
+    props: { 
+      posts: {
+        allPosts,
+        allWorks,
+      }
+    },
   }
 }

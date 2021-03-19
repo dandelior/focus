@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import { getPostBySlug, getAllPosts } from '../lib/api'
+import { getPostBySlug, getAllPosts } from '../../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import markdownToHtml from '../lib/markdownToHtml'
-import formatDate from '../lib/formatDate';
+import { CMS_NAME } from '../../lib/constants'
+import markdownToHtml from '../../lib/markdownToHtml'
+import formatDate from '../../lib/formatDate';
 
-import Header from '../parts/header';
+import Header from '../../parts/header';
 
 function Post({ post, morePosts, preview }) {
 
@@ -19,7 +19,7 @@ function Post({ post, morePosts, preview }) {
     return (
         <>
             <Head>
-                {post.title}
+                <title>{post.title}</title>
             </Head>
 
             <Header />
